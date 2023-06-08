@@ -9,51 +9,111 @@
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./index.js" defer></script>
     <title>Frontend Mentor | Todo app</title>
-    <style>
-      .attribution {
-        font-size: 11px;
-        text-align: center;
-      }
-      .attribution a {
-        color: hsl(228, 45%, 44%);
-      }
-    </style>
   </head>
   <body>
+    <div class="background"></div>
     <main>
-      <div class="title">
-        <h1>TODO</h1>
-        <img src="./images/icon-moon.svg" />
-        <img src="./images/icon-sun.svg" />
-      </div>
-      <div class="input-box">
-        <input type="radio" />
-        <input
-          type="text"
-          class="js-input-text"
-          placeholder="Create a new todo..."
-        />
-      </div>
-      <div class="list">
-        <div class="list-footer">
-          <p><span class="js-items-left"></span> items left</p>
-          <div class="filter">
-            <button class="js-all">All</button>
-            <button class="js-active">Active</button>
-            <button class="js-completed">Completed</button>
-          </div>
-          <button class="js-clear-completed">Clear Completed</button>
+      <div class="container">
+        <div class="title">
+          <h1>TODO</h1>
+          <img src="./images/icon-sun.svg" class="hidden" />
+          <img src="./images/icon-moon.svg" />
         </div>
+        <div class="input-box">
+          <label class="js-input">
+            <input type="checkbox" id="js-add" /><label
+              for="js-add"
+              class="js-add-label"
+            ></label>
+            <input
+              type="text"
+              class="js-input-text"
+              placeholder="Create a new todo..."
+            />
+          </label>
+        </div>
+        <div class="list">
+          <div class="list-item">
+            <div class="js-check-div">
+              <input type="checkbox" class="js-check" />
+            </div>
+            <p class="text-output">Complete online JavaScript course</p>
+          </div>
+          <div class="list-item">
+            <div class="js-check-div">
+              <input type="checkbox" class="js-check" />
+            </div>
+            <p class="text-output">Jog around the park 3x</p>
+          </div>
+          <div class="list-item">
+            <div class="js-check-div">
+              <input type="checkbox" class="js-check" />
+            </div>
+            <p class="text-output">10 minute meditation</p>
+          </div>
+          <div class="list-item">
+            <div class="js-check-div">
+              <input type="checkbox" class="js-check" />
+            </div>
+            <p class="text-output">Read for 1 hour</p>
+          </div>
+          <div class="list-item">
+            <div class="js-check-div">
+              <input type="checkbox" class="js-check" />
+            </div>
+            <p class="text-output">Pick up groceries</p>
+          </div>
+          <div class="list-item">
+            <div class="js-check-div">
+              <input type="checkbox" class="js-check" />
+            </div>
+            <p class="text-output">Complete Todo App on Frontend Mentor</p>
+          </div>
+          <div class="list-footer">
+            <p><span class="js-items-left">6</span> items left</p>
+            <div class="filter">
+              <input
+                type="radio"
+                name="status"
+                id="radio-all"
+                value="all"
+                checked
+              /><label for="radio-all">All</label>
+              <input
+                type="radio"
+                name="status"
+                id="radio-active"
+                value="active"
+              /><label for="radio-active">Active</label>
+              <input
+                type="radio"
+                name="status"
+                id="radio-completed"
+                value="completed"
+              /><label for="radio-completed">Completed</label>
+            </div>
+            <button class="js-clear-completed">Clear Completed</button>
+          </div>
+        </div>
+        <p>Drag and drop to reorder list</p>
       </div>
-      <p>Drag and drop to reorder list</p>
     </main>
     <footer>
       <div class="attribution">
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
           >Frontend Mentor</a
-        >. Coded by <a href="#">Your Name Here</a>.
+        >. Coded by
+        <a href="https://github.com/AlexMagargiu">Magargiu Alexandru Razvan</a>.
       </div>
     </footer>
   </body>
