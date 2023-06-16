@@ -1,10 +1,10 @@
 :root {
   --clr-active-state: hsl(220, 98%, 61%);
-  --clr-card-bg: hsl(0, 0%, 98%);
-  --clr-body-bg: hsl(236, 33%, 92%);
-  --clr-card-shadow: hsl(233, 11%, 84%);
-  --clr-footer-txt: hsl(236, 9%, 61%);
-  --clr-active-txt: hsl(235, 19%, 35%);
+/*   --clr-card-bg: hsl(0, 0%, 98%);
+  --clr-body-bg: hsl(236, 33%, 92%); */
+/*   --clr-card-shadow: hsl(233, 11%, 84%); */
+/*   --clr-footer-txt: hsl(236, 9%, 61%); */
+/*   --clr-active-txt: hsl(235, 19%, 35%); */
 }
 
 *,
@@ -18,7 +18,7 @@
 }
 
 body {
-  background-color: var(--clr-card-bg);
+  background-color: var(--clr-body-bg);
 }
 
 .background {
@@ -60,7 +60,12 @@ h1 {
   color: white;
 }
 
-.hidden {
+.hidden-circle{
+  display: none;
+}
+
+.hidden{
+  position: absolute;
   visibility: hidden;
 }
 
@@ -70,7 +75,7 @@ h1 {
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  width: 38rem;
+  width: 32rem;
   border-radius: 6px;
   margin-bottom: 2rem;
 }
@@ -84,13 +89,15 @@ h1 {
 .js-check-div {
   width: 1.5rem;
   height: 1.5rem;
-  border: 1px solid var(--clr-body-bg);
+  border: 1px solid var(--clr-list-border);
   border-radius: 50%;
 }
 
 .js-input-text {
   border: 0;
   outline: 0;
+  background-color: var(--clr-card-bg);
+  color: var(--clr-text);
 }
 
 .list {
@@ -100,7 +107,7 @@ h1 {
   width: 100%;
   background-color: var(--clr-card-bg);
   border-radius: 6px;
-  box-shadow: var(--clr-card-shadow) 0px 6px 20px 0px;
+  box-shadow: 0px 15px 50px -5px var(--clr-shadow);
 }
 
 .list-item {
@@ -108,12 +115,12 @@ h1 {
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  border-bottom: 1px solid var(--clr-body-bg);
+  border-bottom: 1px solid var(--clr-list-border);
   width: 100%;
 }
 
 .text-output {
-  color: var(--clr-active-txt);
+  color: var(--clr-text);
 }
 
 .list-footer {
@@ -122,7 +129,7 @@ h1 {
   justify-content: space-between;
   width: 100%;
   padding: 1rem 1.5rem;
-  color: var(--clr-footer-txt);
+  color: var(--clr-footer-text);
 }
 
 .list-footer > p,
@@ -159,20 +166,45 @@ p > span,
 .js-clear-completed {
   background: 0;
   border: 0;
-  color: var(--clr-footer-txt);
+  color: var(--clr-footer-text);
 }
 
 .container > p {
-  color: var(--clr-footer-txt);
+  font-size: 16px;
+  color: var(--clr-footer-text);
   margin-top: 4rem;
+}
+
+:root:has(#dark:checked){
+  --clr-body-bg: hsl(235, 21%, 11%);
+  --clr-card-bg: hsl(235, 24%, 19%);
+  --clr-text: hsl(236, 33%, 92%);
+  --clr-footer-text: hsl(234, 11%, 52%);
+  --clr-footer-text-hover: hsl(233, 14%, 35%);;
+  --clr-complete-text: hsl(234, 11%, 52%);
+  --clr-list-border: hsl(237, 14%, 26%);
+  --clr-shadow: hsl(235, 21%, 11%);
+}
+
+:root:has(#light:checked){
+  --clr-body-bg: hsl(236, 33%, 92%);
+  --clr-card-bg: hsl(0, 0%, 98%);
+  --clr-text: hsl(235, 19%, 35%);
+  --clr-footer-text: hsl(236, 9%, 61%);
+  --clr-footer-text-hover: hsl(235, 19%, 35%);
+  --clr-complete-text: hsl(236, 9%, 61%);
+  --clr-list-border: hsl(233, 11%, 84%);
+  --clr-shadow: hsl(236, 33%, 92%);
 }
 
 .attribution {
   font-size: 11px;
   text-align: center;
+  color: var(--clr-text);
 }
 
 .attribution a {
   font-size: 11px;
   color: hsl(228, 45%, 44%);
+  color: var(--clr-text);
 }
