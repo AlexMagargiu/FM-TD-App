@@ -1,10 +1,5 @@
 :root {
   --clr-active-state: hsl(220, 98%, 61%);
-/*   --clr-card-bg: hsl(0, 0%, 98%);
-  --clr-body-bg: hsl(236, 33%, 92%); */
-/*   --clr-card-shadow: hsl(233, 11%, 84%); */
-/*   --clr-footer-txt: hsl(236, 9%, 61%); */
-/*   --clr-active-txt: hsl(235, 19%, 35%); */
 }
 
 *,
@@ -18,7 +13,7 @@
 }
 
 body {
-  background-color: var(--clr-body-bg);
+  background-color: var(--clr-body-bg)
 }
 
 .background {
@@ -86,11 +81,23 @@ h1 {
 }
 
 .js-add-label,
-.js-check-div {
+.js-check-label {
   width: 1.5rem;
   height: 1.5rem;
   border: 1px solid var(--clr-list-border);
   border-radius: 50%;
+}
+
+/*This is a hell of a hack job that doesn't yet have support for Firefox*/
+.js-check-label:has(> .js-check:checked) {
+  background-image: url("./images/icon-check.svg"), linear-gradient(125deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%, cover;
+}
+
+.js-check-label, .text-output, #radio-all + label, #radio-active + label, #radio-completed + label, .js-clear-completed{
+  cursor: pointer;
 }
 
 .js-input-text {
@@ -98,6 +105,8 @@ h1 {
   outline: 0;
   background-color: var(--clr-card-bg);
   color: var(--clr-text);
+  caret-color: var(--clr-active-state);
+  font-size: 24px;
 }
 
 .list {
@@ -117,6 +126,10 @@ h1 {
   padding: 1.25rem;
   border-bottom: 1px solid var(--clr-list-border);
   width: 100%;
+}
+
+.list-item:hover{
+  background: url(./images/icon-cross.svg) no-repeat 525px 26px;
 }
 
 .text-output {
