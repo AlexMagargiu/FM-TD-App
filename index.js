@@ -34,3 +34,23 @@ function themeSwitcher(){
         backgroundDiv.style.backgroundImage = "url('./images/bg-desktop-dark.jpg')"
     }
 }
+
+function checkComplete(){
+    const inputElements = document.querySelectorAll(".js-check")
+    inputElements.forEach((checkbox) => {
+        checkbox.addEventListener('change', function (event) {
+            const checkbox = event.target;
+            const textOutput = checkbox.parentNode.nextElementSibling;
+            if (checkbox.checked) {
+              textOutput.classList.add('completed');
+            } else {
+              textOutput.classList.remove('completed');
+            }
+          });
+        });
+}
+
+document.querySelectorAll(".js-check").forEach(function(button){
+    button.addEventListener('click', checkComplete());
+});
+
