@@ -19,3 +19,18 @@ function addNewToDo(){
     parentDiv.insertBefore(newDiv, firstChild);
 }
 
+function themeSwitcher(){
+    const darkTheme = document.querySelector("#dark")
+    const lightTheme = document.querySelector("#light");
+    const themeIcons = document.querySelectorAll(".radio-icon");
+    const backgroundDiv = document.querySelector(".background");
+    if(lightTheme.checked){
+        themeIcons[0].classList.remove("hidden");
+        themeIcons[1].classList.add("hidden");
+        backgroundDiv.style.backgroundImage = "url('./images/bg-desktop-light.jpg')"
+    }else if(darkTheme.checked){
+        themeIcons[0].classList.add("hidden");
+        themeIcons[1].classList.remove("hidden");
+        backgroundDiv.style.backgroundImage = "url('./images/bg-desktop-dark.jpg')"
+    }
+}
