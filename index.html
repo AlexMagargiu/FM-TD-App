@@ -32,6 +32,7 @@
                 name="radioButton"
                 class="hidden-circle"
                 id="dark"
+                onclick="themeSwitcher()"
               />
               <img class="radio-icon" src="./images/icon-moon.svg" />
             </label>
@@ -41,15 +42,16 @@
                 name="radioButton"
                 class="hidden-circle"
                 id="light"
+                onclick="themeSwitcher()"
                 checked
               />
-              <img class="radio-icon" src="./images/icon-sun.svg" />
+              <img class="radio-icon hidden" src="./images/icon-sun.svg" />
             </label>
           </div>
         </div>
         <div class="input-box">
           <label class="js-input">
-            <input type="checkbox" id="js-add" /><label
+            <input type="checkbox" id="js-add" onclick="addNewToDo()" /><label
               for="js-add"
               class="js-add-label"
             ></label>
@@ -57,15 +59,18 @@
               type="text"
               class="js-input-text"
               placeholder="Create a new todo..."
+              oninput="fillCircle()"
             />
           </label>
         </div>
         <div class="list">
           <div class="list-item">
             <label class="js-check-label">
-              <input type="checkbox" class="js-check" />
+              <input type="checkbox" class="js-check" checked />
             </label>
-            <p class="text-output">Complete online JavaScript course</p>
+            <p class="text-output completed">
+              Complete online JavaScript course
+            </p>
           </div>
           <div class="list-item">
             <label class="js-check-label">
@@ -105,6 +110,7 @@
                 name="status"
                 id="radio-all"
                 value="all"
+                onclick="selectAllTasks()"
                 checked
               /><label for="radio-all">All</label>
               <input
@@ -112,12 +118,14 @@
                 name="status"
                 id="radio-active"
                 value="active"
+                onclick="selectActiveTasks()"
               /><label for="radio-active">Active</label>
               <input
                 type="radio"
                 name="status"
                 id="radio-completed"
                 value="completed"
+                onclick="selectCompletedTasks()"
               /><label for="radio-completed">Completed</label>
             </div>
             <button class="js-clear-completed">Clear Completed</button>
