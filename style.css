@@ -88,9 +88,16 @@ h1 {
   border-radius: 50%;
 }
 
-/*This is a hell of a hack job that doesn't yet have support for Firefox*/
-.js-check-label:has(> .js-check:checked) {
+.fill-circle{
+  background-image: url("./images/icon-plus.svg"), linear-gradient(125deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.js-check-label:has(> .js-check:checked){
   background-image: url("./images/icon-check.svg"), linear-gradient(125deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+/*This is a hell of a hack job that doesn't yet have support for Firefox*/
+.js-check-label:has(> .js-check:checked), .fill-circle {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%, cover;
@@ -186,6 +193,11 @@ p > span,
   font-size: 16px;
   color: var(--clr-footer-text);
   margin-top: 4rem;
+}
+
+.completed{
+  text-decoration: line-through;
+  color: var(--clr-complete-text);
 }
 
 :root:has(#dark:checked){
