@@ -85,6 +85,9 @@ function selectActiveTasks(){
         if(textOutput.classList.contains("completed")){
             const parentDiv = textOutput.closest(".list-item");
             parentDiv.classList.add('hidden');
+        }else{
+            const parentDiv = textOutput.closest(".list-item");
+            parentDiv.classList.remove('hidden');
         }
     });
 }
@@ -95,6 +98,32 @@ function selectCompletedTasks(){
         if(!textOutput.classList.contains("completed")){
             const parentDiv = textOutput.closest(".list-item");
             parentDiv.classList.add('hidden');
+        }else{
+            const parentDiv = textOutput.closest(".list-item");
+            parentDiv.classList.remove('hidden');
         }
     });
+}
+
+function clearCompletedTasks(){
+    const textOutputs = document.querySelectorAll(".text-output");
+    textOutputs.forEach((textOutput) => {
+        if(textOutput.classList.contains("completed")){
+            const parentDiv = textOutput.closest(".list-item");
+            parentDiv.remove();
+        }
+    });
+}
+
+//Needs work on how to call this
+function calculateTasksLeft(){
+    let textsCompleted = document.querySelectorAll(".text-output");
+    let itemsLeft = document.querySelector(".js-items-left")
+    let itemsLeftNumber = 0;
+    for(let i = 0; i < textsCompleted.length; i++){
+        if(!textsCompleted[i].classList.contains("completed")){
+            itemsLeftNumber++;
+        }
+    }
+    itemsLeft.textContent = itemsLeftNumber.toString();
 }
