@@ -30,7 +30,6 @@ body {
 main {
   height: 98.5vh;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -39,6 +38,7 @@ main {
   align-items: center;
   flex-direction: column;
   min-height: 78vh;
+  margin-top: 5rem;
 }
 
 .title {
@@ -133,14 +133,22 @@ h1 {
   padding: 1.25rem;
   border-bottom: 1px solid var(--clr-list-border);
   width: 100%;
+  cursor: grab;
 }
 
-.list-item:hover{
-  background: url(./images/icon-cross.svg) no-repeat 525px 26px;
+.cross{
+  margin-left: auto;
+  visibility: hidden;
+}
+
+.list-item:hover > .cross{
+  visibility: visible !important;
+  cursor: pointer;
 }
 
 .text-output {
   color: var(--clr-text);
+  cursor: pointer;
 }
 
 .list-footer {
