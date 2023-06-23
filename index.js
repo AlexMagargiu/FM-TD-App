@@ -15,9 +15,15 @@ function addNewToDo(){
         const newPara = document.createElement("p");
         newPara.textContent = inputElement.value;
         newPara.classList.add("text-output");
+        const newCross = document.createElement("img");
+        newCross.src = "./images/icon-cross.svg";
+        newCross.classList.add("cross");
+        newCross.addEventListener('click', function() {removeTask();});
         newDiv.appendChild(newLabel);
         newDiv.appendChild(newPara);
+        newDiv.appendChild(newCross);
         parentDiv.insertBefore(newDiv, firstChild);
+        calculateTasksLeft();
     }
 }
 
@@ -47,23 +53,21 @@ function themeSwitcher(){
     }
 }
 
-function checkComplete(){
-    const inputElements = document.querySelectorAll(".js-check")
-    inputElements.forEach((checkbox) => {
-        checkbox.addEventListener("change", function (event) {
-            const checkbox = event.target;
-            const textOutput = checkbox.parentNode.nextElementSibling;
-            if (checkbox.checked) {
-              textOutput.classList.add("completed");
-            } else {
-              textOutput.classList.remove("completed");
-            }
-          });
+function checkComplete(button){
+    button.addEventListener("change", function (event) {
+        const checkbox = event.target;
+        const textOutput = checkbox.parentNode.nextElementSibling;
+        if (checkbox.checked) {
+            textOutput.classList.add("completed");
+        } else {
+            textOutput.classList.remove("completed");
+        }
+        calculateTasksLeft();
         });
 }
 
 document.querySelectorAll(".js-check").forEach(function(button){
-    button.addEventListener('click', checkComplete());
+    button.addEventListener('click', function(event) {checkComplete(event.target);});
 });
 
 function selectAllTasks(){
@@ -72,6 +76,7 @@ function selectAllTasks(){
         if(textOutput.classList.contains("completed")){
             const parentDiv = textOutput.closest(".list-item");
             parentDiv.classList.remove('hidden');
+            calculateTasksLeft();
         }else{
             const parentDiv = textOutput.closest(".list-item");
             parentDiv.classList.remove('hidden');
@@ -85,6 +90,7 @@ function selectActiveTasks(){
         if(textOutput.classList.contains("completed")){
             const parentDiv = textOutput.closest(".list-item");
             parentDiv.classList.add('hidden');
+            calculateTasksLeft();
         }else{
             const parentDiv = textOutput.closest(".list-item");
             parentDiv.classList.remove('hidden');
@@ -98,6 +104,8 @@ function selectCompletedTasks(){
         if(!textOutput.classList.contains("completed")){
             const parentDiv = textOutput.closest(".list-item");
             parentDiv.classList.add('hidden');
+            let itemsLeft = document.querySelector(".js-items-left")
+            itemsLeft.textContent = "0"
         }else{
             const parentDiv = textOutput.closest(".list-item");
             parentDiv.classList.remove('hidden');
@@ -115,9 +123,24 @@ function clearCompletedTasks(){
     });
 }
 
+function removeTask(){
+    const parentDivs = document.querySelectorAll(".list-item");
+    for (parentDiv of parentDivs){
+        if(parentDiv.matches(":hover")){
+            parentDiv.remove();
+        }
+    }
+    calculateTasksLeft();
+}
+
+document.querySelectorAll(".cross").forEach(function(cross){
+    cross.addEventListener('click', function() {removeTask();});
+});
+
 //Needs work on how to call this
 function calculateTasksLeft(){
     let textsCompleted = document.querySelectorAll(".text-output");
+    console.log(textsCompleted);
     let itemsLeft = document.querySelector(".js-items-left")
     let itemsLeftNumber = 0;
     for(let i = 0; i < textsCompleted.length; i++){
@@ -127,3 +150,7 @@ function calculateTasksLeft(){
     }
     itemsLeft.textContent = itemsLeftNumber.toString();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    calculateTasksLeft();
+});
