@@ -6,6 +6,7 @@ function addNewToDo(){
     if(inputElement.value !== ""){
         const newDiv = document.createElement("div");
         newDiv.classList.add("list-item");
+        newDiv.setAttribute("draggable", true);
         const newLabel = document.createElement("label");
         newLabel.classList.add("js-check-label");
         const newInput = document.createElement("input");
@@ -137,10 +138,8 @@ document.querySelectorAll(".cross").forEach(function(cross){
     cross.addEventListener('click', function() {removeTask();});
 });
 
-//Needs work on how to call this
 function calculateTasksLeft(){
     let textsCompleted = document.querySelectorAll(".text-output");
-    console.log(textsCompleted);
     let itemsLeft = document.querySelector(".js-items-left")
     let itemsLeftNumber = 0;
     for(let i = 0; i < textsCompleted.length; i++){
@@ -153,4 +152,68 @@ function calculateTasksLeft(){
 
 document.addEventListener('DOMContentLoaded', function() {
     calculateTasksLeft();
+});
+
+function changeFooterElementsMobile(){
+    const listFooter = document.querySelector(".list-footer");
+    const listFilter = document.querySelector(".filter");
+    if(listFooter.contains(listFilter)){
+        listFilter.remove();
+        createNewDivMobile();
+    }
+}   
+
+function createNewDivMobile(){
+    const listContainer = document.querySelector(".container");
+    const lastPara = document.querySelector(".container > p");
+    lastPara.remove();
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("mobile-div");
+    const newAllInput = document.createElement("input");
+    newAllInput.setAttribute("type", "radio");
+    newAllInput.setAttribute("name", "status");
+    newAllInput.setAttribute("id", "radio-all");
+    newAllInput.setAttribute("value", "all");
+    newAllInput.setAttribute("onclick", "selectAllTasks()");
+    newAllInput.setAttribute("checked", true);
+    newAllInput.checked = true;
+    const newAllLabel = document.createElement("label");
+    newAllLabel.setAttribute("for", "radio-all");
+    newAllLabel.textContent = "All"
+    const newActiveInput = document.createElement("input");
+    newActiveInput.setAttribute("type", "radio");
+    newActiveInput.setAttribute("name", "status");
+    newActiveInput.setAttribute("id", "radio-active");
+    newActiveInput.setAttribute("value", "active");
+    newActiveInput.setAttribute("onclick", "selectActiveTasks()");
+    const newActiveLabel = document.createElement("label");
+    newActiveLabel.setAttribute("for", "radio-active");
+    newActiveLabel.textContent = "Active"
+    const newCompletedInput = document.createElement("input");
+    newCompletedInput.setAttribute("type", "radio");
+    newCompletedInput.setAttribute("name", "status");
+    newCompletedInput.setAttribute("id", "radio-completed");
+    newCompletedInput.setAttribute("value", "completed");
+    newCompletedInput.setAttribute("onclick", "selectCompletedTasks()");
+    const newCompletedLabel = document.createElement("label");
+    newCompletedLabel.setAttribute("for", "radio-completed");
+    newCompletedLabel.textContent = "Completed"
+    newDiv.appendChild(newAllInput);
+    newDiv.appendChild(newAllLabel);
+    newDiv.appendChild(newActiveInput);
+    newDiv.appendChild(newActiveLabel);
+    newDiv.appendChild(newCompletedInput);
+    newDiv.appendChild(newCompletedLabel);
+    listContainer.appendChild(newDiv);
+    const newLastPara = document.createElement("p");
+    newLastPara.style.marginTop = "2rem";
+    newLastPara.style.paddingBottom = "4rem";
+    newLastPara.textContent = "Drag and drop to reorder list";
+    listContainer.appendChild(newLastPara);
+}
+
+window.addEventListener("resize", function(){
+    if (window.innerWidth <= 600) {
+        changeFooterElementsMobile();
+    }
 });
