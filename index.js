@@ -31,6 +31,17 @@ function addNewToDo(){
     }
 }
 
+document.querySelector(".js-input-text").addEventListener("keypress", function(event) {
+    if(event.key === "Enter"){
+        addNewToDo();
+        document.querySelector(".js-input-text").value = "";
+    }
+});
+
+document.querySelector("#js-add").addEventListener("click", () => {
+    document.querySelector(".js-input-text").value = "";
+})
+
 function fillCircle(){
     const circleElement = document.querySelector(".js-add-label");
     let inputElement = document.querySelector(".js-input-text");
@@ -56,6 +67,30 @@ function themeSwitcher(){
         backgroundDiv.style.backgroundImage = "url('./images/bg-desktop-dark.jpg')"
     }
 }
+
+const colorThemes = document.querySelectorAll('[name ="theme"]');
+
+const storeTheme = function(theme){
+    localStorage.setItem("theme", theme);
+}
+
+const retrieveTheme = function(){
+    const activeTheme = localStorage.getItem("theme");
+    colorThemes.forEach((theme) => {
+        if(theme.id === activeTheme){
+            theme.checked = true;
+            themeSwitcher();
+        }
+    });
+}
+
+colorThemes.forEach(theme => {
+    theme.addEventListener("click", () => {
+        storeTheme(theme.id);
+    });
+});
+
+document.onload = retrieveTheme();
 
 function checkComplete(button){
     button.addEventListener("change", function (event) {
