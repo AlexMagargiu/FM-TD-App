@@ -208,7 +208,7 @@ p > span,
   color: var(--clr-complete-text);
 }
 
-.dragging{
+.list-item.dragging{
   opacity: .5;
 }
 
