@@ -25,6 +25,9 @@ function addNewToDo(){
         newDiv.appendChild(newCross);
         parentDiv.insertBefore(newDiv, firstChild);
         calculateTasksLeft();
+        checkComplete(newDiv);
+        makeElementDraggable(newDiv);
+        newDiv.addEventListener("dragover", initSortableContainer);
     }
 }
 
@@ -219,18 +222,18 @@ window.addEventListener("resize", function(){
 });
 
 const itemContainer = document.querySelector(".list");
-const listItems = document.querySelectorAll(".list-item");
 
-listItems.forEach(item => {
-    item.addEventListener("dragstart", () =>{
-        item.classList.add("dragging");
+function makeElementDraggable(element) {
+    element.addEventListener("dragstart", () => {
+        element.classList.add("dragging");
     });
-    item.addEventListener("dragend", () =>{
-        item.classList.remove("dragging");
-    });
-});
 
-const initSortableContainer = (e) =>{
+    element.addEventListener("dragend", () => {
+        element.classList.remove("dragging");
+    });
+}
+
+function initSortableContainer(e) {
     e.preventDefault();
     const draggingItem = itemContainer.querySelector(".dragging");
     const siblings = [...itemContainer.querySelectorAll(".list-item:not(.dragging)")];
@@ -238,7 +241,11 @@ const initSortableContainer = (e) =>{
         return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
     });
 
-    itemContainer.insertBefore(draggingItem, nextSibling)
+    itemContainer.insertBefore(draggingItem, nextSibling);
 }
 
-itemContainer.addEventListener("dragover", initSortableContainer)
+const listItems = document.querySelectorAll(".list-item");
+listItems.forEach(item => {
+    makeElementDraggable(item);
+    item.addEventListener("dragover", initSortableContainer);
+});
