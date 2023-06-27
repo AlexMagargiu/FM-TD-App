@@ -217,3 +217,28 @@ window.addEventListener("resize", function(){
         changeFooterElementsMobile();
     }
 });
+
+const itemContainer = document.querySelector(".list");
+const listItems = document.querySelectorAll(".list-item");
+
+listItems.forEach(item => {
+    item.addEventListener("dragstart", () =>{
+        item.classList.add("dragging");
+    });
+    item.addEventListener("dragend", () =>{
+        item.classList.remove("dragging");
+    });
+});
+
+const initSortableContainer = (e) =>{
+    e.preventDefault();
+    const draggingItem = itemContainer.querySelector(".dragging");
+    const siblings = [...itemContainer.querySelectorAll(".list-item:not(.dragging)")];
+    let nextSibling = siblings.find(sibling => {
+        return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+    });
+
+    itemContainer.insertBefore(draggingItem, nextSibling)
+}
+
+itemContainer.addEventListener("dragover", initSortableContainer)
