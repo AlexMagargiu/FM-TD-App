@@ -34,7 +34,7 @@
                 id="dark"
                 onclick="themeSwitcher()"
               />
-              <img class="radio-icon" src="./images/icon-moon.svg" />
+              <img class="radio-icon" src="./images/icon-moon.svg" alt="" />
             </label>
             <label>
               <input
@@ -45,12 +45,16 @@
                 onclick="themeSwitcher()"
                 checked
               />
-              <img class="radio-icon hidden" src="./images/icon-sun.svg" />
+              <img
+                class="radio-icon hidden"
+                src="./images/icon-sun.svg"
+                alt=""
+              />
             </label>
           </div>
         </div>
         <div class="input-box">
-          <label class="js-input">
+          <div class="js-input">
             <input type="checkbox" id="js-add" onclick="addNewToDo()" /><label
               for="js-add"
               class="js-add-label"
@@ -59,54 +63,55 @@
               type="text"
               class="js-input-text"
               placeholder="Create a new todo..."
-              oninput="fillCircle()"
             />
-          </label>
+          </div>
         </div>
         <div class="list">
-          <div class="list-item" draggable="true">
-            <label class="js-check-label">
-              <input type="checkbox" class="js-check" checked />
-            </label>
-            <p class="text-output completed">
-              Complete online JavaScript course
-            </p>
-            <img src="./images/icon-cross.svg" class="cross" />
-          </div>
-          <div class="list-item" draggable="true">
-            <label class="js-check-label">
-              <input type="checkbox" class="js-check" />
-            </label>
-            <p class="text-output">Jog around the park 3x</p>
-            <img src="./images/icon-cross.svg" class="cross" />
-          </div>
-          <div class="list-item" draggable="true">
-            <label class="js-check-label">
-              <input type="checkbox" class="js-check" />
-            </label>
-            <p class="text-output">10 minute meditation</p>
-            <img src="./images/icon-cross.svg" class="cross" />
-          </div>
-          <div class="list-item" draggable="true">
-            <label class="js-check-label">
-              <input type="checkbox" class="js-check" />
-            </label>
-            <p class="text-output">Read for 1 hour</p>
-            <img src="./images/icon-cross.svg" class="cross" />
-          </div>
-          <div class="list-item" draggable="true">
-            <label class="js-check-label">
-              <input type="checkbox" class="js-check" />
-            </label>
-            <p class="text-output">Pick up groceries</p>
-            <img src="./images/icon-cross.svg" class="cross" />
-          </div>
-          <div class="list-item" draggable="true">
-            <label class="js-check-label">
-              <input type="checkbox" class="js-check" />
-            </label>
-            <p class="text-output">Complete Todo App on Frontend Mentor</p>
-            <img src="./images/icon-cross.svg" class="cross" />
+          <div class="list-item-container">
+            <div class="list-item" draggable="true">
+              <label class="js-check-label">
+                <input type="checkbox" class="js-check" checked />
+              </label>
+              <p class="text-output completed">
+                Complete online JavaScript course
+              </p>
+              <img src="./images/icon-cross.svg" class="cross" alt="" />
+            </div>
+            <div class="list-item" draggable="true">
+              <label class="js-check-label">
+                <input type="checkbox" class="js-check" />
+              </label>
+              <p class="text-output">Jog around the park 3x</p>
+              <img src="./images/icon-cross.svg" class="cross" alt="" />
+            </div>
+            <div class="list-item" draggable="true">
+              <label class="js-check-label">
+                <input type="checkbox" class="js-check" />
+              </label>
+              <p class="text-output">10 minute meditation</p>
+              <img src="./images/icon-cross.svg" class="cross" alt="" />
+            </div>
+            <div class="list-item" draggable="true">
+              <label class="js-check-label">
+                <input type="checkbox" class="js-check" />
+              </label>
+              <p class="text-output">Read for 1 hour</p>
+              <img src="./images/icon-cross.svg" class="cross" alt="" />
+            </div>
+            <div class="list-item" draggable="true">
+              <label class="js-check-label">
+                <input type="checkbox" class="js-check" />
+              </label>
+              <p class="text-output">Pick up groceries</p>
+              <img src="./images/icon-cross.svg" class="cross" alt="" />
+            </div>
+            <div class="list-item" draggable="true">
+              <label class="js-check-label">
+                <input type="checkbox" class="js-check" />
+              </label>
+              <p class="text-output">Complete Todo App on Frontend Mentor</p>
+              <img src="./images/icon-cross.svg" class="cross" alt="" />
+            </div>
           </div>
           <div class="list-footer">
             <p>
