@@ -1,9 +1,9 @@
 function addNewToDo(){
     let inputElement = document.querySelector(".js-input-text");
-    const parentDiv = document.querySelector(".list-item").parentNode;
+    const parentDiv = document.querySelector(".list-item-container");
     let childElements = document.querySelectorAll(".list-item");
     let firstChild = childElements[0];
-    if(inputElement.value !== ""){
+    if(inputElement.value !== "" && parentDiv){
         const newDiv = document.createElement("div");
         newDiv.classList.add("list-item");
         newDiv.setAttribute("draggable", true);
@@ -33,6 +33,7 @@ function addNewToDo(){
 
 document.querySelector(".js-input-text").addEventListener("keypress", function(event) {
     if(event.key === "Enter"){
+        removeCircle();
         addNewToDo();
         document.querySelector(".js-input-text").value = "";
     }
@@ -42,15 +43,24 @@ document.querySelector("#js-add").addEventListener("click", () => {
     document.querySelector(".js-input-text").value = "";
 })
 
-function fillCircle(){
+function fillCircle() {
     const circleElement = document.querySelector(".js-add-label");
     let inputElement = document.querySelector(".js-input-text");
-    if(inputElement.value !== ""){
-        circleElement.classList.add("fill-circle");
-    }else{
-        circleElement.classList.remove("fill-circle");
+    if (inputElement.value !== "") {
+      circleElement.classList.add("fill-circle");
+    } else{
+      circleElement.classList.remove("fill-circle");
     }
-}
+  }
+
+function removeCircle(){
+    const circleElement = document.querySelector(".js-add-label");
+    circleElement.classList.remove("fill-circle")
+  }
+
+document.querySelector(".js-input-text").addEventListener("input", fillCircle);
+
+document.querySelector("#js-add").addEventListener("click", removeCircle);
 
 function themeSwitcher(){
     const darkTheme = document.querySelector("#dark")
@@ -256,7 +266,7 @@ window.addEventListener("resize", function(){
     }
 });
 
-const itemContainer = document.querySelector(".list");
+const itemContainer = document.querySelector(".list-item-container");
 
 function makeElementDraggable(element) {
     element.addEventListener("dragstart", () => {
